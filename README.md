@@ -19,7 +19,7 @@ The backend for the Freebites iOS app.
 
 ## User
 
-#### /signup
+### /signup
 
 Signs up the user.
 
@@ -82,7 +82,7 @@ Signs up the user.
 }
 ```
 
-#### /signin
+### /signin
 
 Sign the user in.
 
@@ -119,10 +119,44 @@ Sign the user in.
 **Unsuccessful response (_401_):**
 
 ```
-Invalid Email or password.
+{
+	"status": 401,
+	"message": "Invalid Email or password."
+}
 ```
 
-**NOTE:** an Unsuccessful response does not return valid JSON (this may be fixed later). Check the status code (401) to determine login status.
+### /user (show)
+
+Display information about the user.
+
+---
+
+**Expected JSON format:**
+_Empty body_
+
+**NOTE:** this method requires a signed in user. Send the Authorization header with the bearer token strategy.
+
+---
+
+**Successful response (_200_):**
+
+```
+{
+	"email": "test@ucdavis.edu",
+	"name": null,
+	"account_type": "student",
+	"created_at": "2018-11-07T10:21:19.556Z"
+}
+```
+
+**Unsuccessful response (_401_):**
+
+```
+{
+	"status": 401,
+	"message": "You need to sign in or sign up before continuing."
+}
+```
 
 ## Post _(/post)_
 
