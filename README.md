@@ -82,6 +82,48 @@ Signs up the user.
 }
 ```
 
+#### /signin
+
+Sign the user in.
+
+---
+
+**Expected JSON format:**
+
+```
+{
+	"user": {
+		"email": "test@ucdavis.edu",
+		"password": "password"
+	}
+}
+```
+
+---
+
+**Successful response (_200_):**
+
+```
+{
+	"id": 15,
+	"email": "test@ucdavis.edu",
+	"name": null,
+	"account_type": "student",
+	"created_at": "2018-11-07T10:21:19.556Z",
+	"updated_at": "2018-11-07T10:22:08.951Z"
+}
+```
+
+**NOTE:** you can retrieve the users JWT token by looking at the responses `Authorization` header. It will be int the format `Bearer JWT_TOKEN_STRING`
+
+**Unsuccessful response (_401_):**
+
+```
+Invalid Email or password.
+```
+
+**NOTE:** an Unsuccessful response does not return valid JSON (this may be fixed later). Check the status code (401) to determine login status.
+
 ## Post _(/post)_
 
 **TODO!**
