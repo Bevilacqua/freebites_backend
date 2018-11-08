@@ -19,7 +19,7 @@ https://devcenter.heroku.com/articles/git
 
 # API Definition
 
-- Root url: **TODO!**
+- Root url: `https://freebites.herokuapp.com/`
 
 ## 401 errors and user verification
 
@@ -213,12 +213,14 @@ _Empty body_
 
 ```
 {
-	"id": 8,
-	"title": "Raman",
+	"id": 12,
+	"title": "Raman new",
 	"description": "Description",
 	"location": "Wellman 211",
-	"created_at": "2018-11-08T04:03:24.489Z",
-	"updated_at": "2018-11-08T04:03:24.489Z",
+	"created_at": "2018-11-08T08:18:18.334Z",
+	"updated_at": "2018-11-08T08:18:18.334Z",
+	"active": true,
+	"time_left": 1793.579178,
 	"user": {
 		"id": 16,
 		"email": "test2@ucdavis.edu"
