@@ -11,7 +11,11 @@ The backend for the Freebites iOS app.
 
 # Deployment
 
-**TODO!**
+1.  Add remote from heroku
+2.  `git push heroku master`
+
+_Note:_ you must be added as a collaborator on heroku
+https://devcenter.heroku.com/articles/git
 
 # API Definition
 
