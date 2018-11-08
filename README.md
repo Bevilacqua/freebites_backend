@@ -316,6 +316,39 @@ If a student attempts to make a food post
 }
 ```
 
+### DELETE /posts/:id
+
+_ex: rooturl/post/10_  
+Delete a food posting.
+
+**Expected JSON format:**
+_Empty body_
+
+---
+
+**Successful response (_204_):**
+_Empty body_
+
+**Unsuccessful response (_404_):**
+If a user tries to delete a post that no longer exists
+
+```
+{
+	"status": 404,
+	"message": "Post not found with id: 100"
+}
+```
+
+**Unsuccessful response (_403_):**
+If a user tries to delete someone else's post.
+
+```
+{
+	"status": 403,
+	"message": "Current user does not own the post with id: 13"
+}
+```
+
 # Collaborators
 
 - Jacob Bevilacqua

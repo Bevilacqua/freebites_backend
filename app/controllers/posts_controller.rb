@@ -31,4 +31,21 @@ class PostsController < ApplicationController
       render json: { status: 400, message: "Missing post id in request body." }, status: :bad_request
     end
   end
+
+  def destroy
+    if(params[:id].present?)
+      @post = Post.find_by_id(params[:id])
+      if !@post
+        render json: { status: 404, message: "Post not found with id: #{params[:id]}" }, status: :not_found
+      elsif current_user.id != @post.user.id
+        render json: { status: 403, message: "Current user does not own the post with id: #{params[:id]}" }, status: :forbidden
+      elsif @post.destroy
+        head :no_content
+      else
+        render json: { status: 500, message: "Unkown error in destroying post with id: #{params[:id]}"}, status: :internal_server_error
+      end
+    else
+      render json: { status: 400, message: "Missing post id." }, status: :bad_request
+    end
+  end
 end

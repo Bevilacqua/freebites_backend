@@ -11,6 +11,6 @@ Rails.application.routes.draw do
        registrations: 'registrations'
      }
 
-     resources :posts, only: [:create, :show, :index]
+     resources :posts, only: [:create, :show, :index, :destroy]
      get 'user', to: "users#show"
 end
