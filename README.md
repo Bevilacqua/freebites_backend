@@ -173,31 +173,45 @@ _Empty body_
 Get all posts
 
 **Expected JSON format:**
+_Empty body_
 
-```
-{
-	"active": true,
-	"expired": false
-}
-```
 ---
-
-The active and expired field in the JSON body are optional with default true. If you leave the JSON body empty it is equivalent to getting all records.
 
 **Successful response (_200_):**
 
 ```
-[
-	{
-		"id": 11,
-		"title": "Raman new",
-		"location": "Wellman 211",
-		"created_at": "2018-11-08T07:42:59.561Z",
-		"active": true,
-		"time_left": 1764.929788 # Note this is in seconds
-	}
-]
+{
+	"active": [
+		{
+			"id": 13,
+			"title": "Burgers",
+			"location": "Heart 120",
+			"created_at": "2018-11-08T21:28:55.660Z",
+			"active": true,
+			"time_left": 1782.267411
+		},
+		{
+			"id": 14,
+			"title": "Sushi",
+			"location": "Kemper 330",
+			"created_at": "2018-11-08T21:29:10.649Z",
+			"active": true,
+			"time_left": 1797.256313
+		}
+	],
+	"expired": [
+		{
+			"id": 5,
+			"title": "Raman",
+			"location": "Wellman 211",
+			"created_at": "2018-11-08T04:00:41.668Z",
+			"active": false
+		}
+	]
+}
 ```
+
+The `time_left` attribute has a unit of seconds. **It is preferable to calculate time left on the front end in order to keep an active countdown!** A maximum of 5 expired posts will be provided.
 
 ### GET /posts/:id
 

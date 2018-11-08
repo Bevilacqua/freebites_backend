@@ -2,16 +2,8 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    active = params[:active]
-    expired = params[:expired]
-
-    if(active && !expired)    # Only active posts
-      @posts = Post.active
-    elsif(!active && expired) # Only expired posts
-      @posts = Post.expired
-    else                      # Either both (or unspecified)
-      @posts = Post.all
-    end
+    @active_posts = Post.active
+    @expired_posts = Post.expired.order("created_at DESC").limit(5) # Ordered to show the most recently expired items
   end
 
   def create
