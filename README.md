@@ -60,10 +60,10 @@ Signs up the user.
 
 ```
 {
-	"email": "org@ucdavis.edu",
+	"email": "test3@ucdavis.edu",
 	"password": "password",
-	"name": "ORGANIZATION A",
-	"account_type": "organization"
+	"account_type": "organization",
+	"name": "#include"
 }
 ```
 
@@ -75,12 +75,12 @@ Signs up the user.
 {
 	"status": 201,
 	"user": {
-		"id": 8,
-		"email": "test@ucdavis.edu",
-		"name": null,
-		"account_type": "student",
-		"created_at": "2018-11-07T10:08:26.976Z",
-		"updated_at": "2018-11-07T10:08:26.976Z"
+		"id": 17,
+		"email": "test3@ucdavis.edu",
+		"name": "#include",
+		"account_type": "organization",
+		"created_at": "2018-11-08T21:45:59.273Z",
+		"updated_at": "2018-11-08T21:45:59.273Z"
 	}
 }
 ```
@@ -113,7 +113,7 @@ Sign the user in.
 ```
 {
 	"user": {
-		"email": "test@ucdavis.edu",
+		"email": "test3@ucdavis.edu",
 		"password": "password"
 	}
 }
@@ -125,14 +125,16 @@ Sign the user in.
 
 ```
 {
-	"id": 15,
-	"email": "test@ucdavis.edu",
-	"name": null,
-	"account_type": "student",
-	"created_at": "2018-11-07T10:21:19.556Z",
-	"updated_at": "2018-11-07T10:22:08.951Z"
+	"id": 17,
+	"email": "test3@ucdavis.edu",
+	"name": "#include",
+	"account_type": "organization",
+	"created_at": "2018-11-08T21:45:59.273Z",
+	"updated_at": "2018-11-08T21:45:59.273Z"
 }
 ```
+
+**NOTE:** The JWT token string can be found in the Authorization header of the response.
 
 **Unsuccessful response (_401_):**
 
