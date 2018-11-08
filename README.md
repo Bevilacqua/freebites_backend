@@ -21,13 +21,29 @@ https://devcenter.heroku.com/articles/git
 
 - Root url: **TODO!**
 
+## 401 errors and user verification
+
+All endpoints with the exception of: 1. [POST /signup](#POST /signup) 2. [POST /signin](#POST /signup)
+
+require a JWT token to be passed in the Authorization header of the request.
+
+The format should be: `Authorization: Bearer JWT_TOKEN_STRING`. You can retrieve a JWT token string by calling [POST /signin](#POST /signup).
+
+If the JWT token is not present or expired (expiration of 365 days) you will receive a 401 error in the following format:
+
+```
+{
+	"status": 401,
+	"message": "You need to sign in or sign up before continuing."
+}
+```
+
 ## User
 
 ### POST /signup
 
 Signs up the user.
 
----
 
 **Expected JSON format for students:**
 
@@ -90,8 +106,6 @@ Signs up the user.
 
 Sign the user in.
 
----
-
 **Expected JSON format:**
 
 ```
@@ -118,8 +132,6 @@ Sign the user in.
 }
 ```
 
-**NOTE:** you can retrieve the users JWT token by looking at the responses `Authorization` header. It will be int the format `Bearer JWT_TOKEN_STRING`
-
 **Unsuccessful response (_401_):**
 
 ```
@@ -133,12 +145,9 @@ Sign the user in.
 
 Display information about the user.
 
----
 
 **Expected JSON format:**
 _Empty body_
-
-**NOTE:** this method requires a signed in user. Send the Authorization header with the bearer token strategy.
 
 ---
 
@@ -154,28 +163,47 @@ _Empty body_
 }
 ```
 
-**Unsuccessful response (_401_):**
+## Post _(/post)_
+
+
+### GET /posts
+
+Get all posts
+
+**Expected JSON format:**
 
 ```
 {
-	"status": 401,
-	"message": "You need to sign in or sign up before continuing."
+"active": true,
+"expired": false
 }
 ```
+---
 
-## Post _(/post)_
+The active and expired field in the JSON body are optional with default true. If you leave the JSON body empty it is equivalent to getting all records.
+
+**Successful response (_200_):**
+
+```
+[
+	{
+		"id": 11,
+		"title": "Raman new",
+		"location": "Wellman 211",
+		"created_at": "2018-11-08T07:42:59.561Z",
+		"active": true,
+		"time_left": 1764.929788 # Note this is in seconds
+	}
+]
+```
 
 ### GET /posts/:id
 
 _ex: rooturl/post/10_  
 Get information about a post
 
----
-
 **Expected JSON format:**
 _Empty body_
-
-**NOTE:** this method requires a signed in user. Send the Authorization header with the bearer token strategy.
 
 ---
 
@@ -196,14 +224,6 @@ _Empty body_
 }
 ```
 
-**Unsuccessful response (_401_):**
-
-```
-{
-	"status": 401,
-	"message": "You need to sign in or sign up before continuing."
-}
-```
 
 **Unsuccessful response (_404_):**
 
@@ -218,8 +238,6 @@ _Empty body_
 
 Create a new post
 
----
-
 **Expected JSON format:**
 
 ```
@@ -229,8 +247,6 @@ Create a new post
 	"location": "Wellman 211"
 }
 ```
-
-**NOTE:** this method requires a signed in user. Send the Authorization header with the bearer token strategy.
 
 ---
 
@@ -275,8 +291,8 @@ If a student attempts to make a food post
 
 ```
 {
-"status": 403,
-"message": "Only organizations may create new food posts."
+	"status": 403,
+	"message": "Only organizations may create new food posts."
 }
 ```
 
@@ -286,7 +302,3 @@ If a student attempts to make a food post
 - Thomas Chen
 - Lynn Miyashita
 - Kim Quach
-
-```
-
-```

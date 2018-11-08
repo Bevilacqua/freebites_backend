@@ -1,6 +1,19 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    active = params[:active]
+    expired = params[:expired]
+
+    if(active && !expired)    # Only active posts
+      @posts = Post.active
+    elsif(!active && expired) # Only expired posts
+      @posts = Post.expired
+    else                      # Either both (or unspecified)
+      @posts = Post.all
+    end
+  end
+
   def create
     if current_user.organization?
       post_params = params.permit(:title, :location, :description)
