@@ -1,4 +1,4 @@
-class FoodImageUploader < CarrierWave::Uploader::Base
+class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -10,12 +10,12 @@ class FoodImageUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "#{model.class.to_s.underscore}/#{model.id}"
+    "#{Rails.env}/#{model.class.to_s.underscore}/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url(*args)
-    "https://s3-us-west-1.amazonaws.com/freebites-images/default.png"
+    ENV["DEFAULT_IMAGE_URL"]
   end
 
   # Process files as they are uploaded:

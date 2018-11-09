@@ -8,7 +8,8 @@ The backend for the Freebites iOS app.
 2.  `$ rake db:migrate`
 3.  Add the file `.env` to the root of this project and add an entry for `DEVISE_JWT_SECRET_KEY`
 4. 	Obtain AWS credentials and add them to `.env`: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_KEY`, `AWS_REGION`, `S3_BUCKET_NAME`
-4.  `rails s`
+5. 	Place default image url into `.env` (`DEFAULT_IMAGE_URL`)
+6.  `rails s`
 
 # Deployment
 
@@ -186,32 +187,35 @@ _Empty body_
 {
 	"active": [
 		{
-			"id": 13,
-			"title": "Burgers",
-			"location": "Heart 120",
-			"created_at": "2018-11-08T21:28:55.660Z",
-			"active": true,
-			"time_left": 1782.267411
-			"food_image": "https://s3-us-west-1.amazonaws.com/freebites-images/default.png"
-		},
-		{
-			"id": 14,
+			"id": 17,
 			"title": "Sushi",
 			"location": "Kemper 330",
-			"created_at": "2018-11-08T21:29:10.649Z",
+			"created_at": "2018-11-09T01:56:13.267Z",
 			"active": true,
-			"time_left": 1797.256313
-			"food_image": "https://s3-us-west-1.amazonaws.com/freebites-images/default.png"
+			"time_left": 381.035708,
+			"food_image": "https://freebites-images.s3.us-west-1.amazonaws.com/development/post/17/food_image.jpeg",
+			"slip_present": false
+		},
+		{
+			"id": 18,
+			"title": "Raman",
+			"location": "Wellman 211",
+			"created_at": "2018-11-09T02:19:16.926Z",
+			"active": true,
+			"time_left": 1764.690612,
+			"food_image": "https://freebites-images.s3.us-west-1.amazonaws.com/development/post/18/food_image.jpeg",
+			"slip_present": true
 		}
 	],
 	"expired": [
 		{
-			"id": 5,
-			"title": "Raman",
-			"location": "Wellman 211",
-			"created_at": "2018-11-08T04:00:41.668Z",
-			"active": false
-			"food_image": "https://s3-us-west-1.amazonaws.com/freebites-images/default.png"
+			"id": 16,
+			"title": "Sushi",
+			"location": "Kemper 330",
+			"created_at": "2018-11-09T01:49:21.033Z",
+			"active": false,
+			"food_image": "https://freebites-images.s3.us-west-1.amazonaws.com/development/post/16/food_image.png",
+			"slip_present": false
 		}
 	]
 }
@@ -233,15 +237,17 @@ _Empty body_
 
 ```
 {
-	"id": 13,
-	"title": "Burgers",
-	"description": "Oooh they good",
-	"location": "Heart 120",
-	"created_at": "2018-11-08T21:28:55.660Z",
-	"updated_at": "2018-11-08T21:28:55.660Z",
-	"active": false,
-	"time_left": -13182.313061,
-	"food_image": "https://s3-us-west-1.amazonaws.com/freebites-images/default.png",
+	"id": 18,
+	"title": "Raman",
+	"description": "Description",
+	"location": "Wellman 211",
+	"created_at": "2018-11-09T02:19:16.926Z",
+	"updated_at": "2018-11-09T02:19:16.926Z",
+	"active": true,
+	"time_left": 1691.130079,
+	"food_image": "https://freebites-images.s3.us-west-1.amazonaws.com/development/post/18/food_image.jpeg",
+	"slip_image": "https://freebites-images.s3.us-west-1.amazonaws.com/development/post/18/slip_image.jpeg",
+	"slip_present": true,
 	"organization": {
 		"id": 16,
 		"email": "test2@ucdavis.edu",
@@ -272,6 +278,7 @@ Create a new post
 	"description": "Litt",
 	"location": "Kemper 330",
 	"food_image": "data:image/png;base64,iVBO..." 	# food_image param is expected to be in base64
+	"slip_image": "data:image/png;base64,iVBO..." 	# slip_image param is expected to be in base64
 }
 ```
 
@@ -281,15 +288,17 @@ Create a new post
 
 ```
 {
-	"id": 16,
-	"title": "Sushi",
-	"description": "Litt",
-	"location": "Kemper 330",
-	"created_at": "2018-11-09T01:49:21.033Z",
-	"updated_at": "2018-11-09T01:49:21.033Z",
+	"id": 18,
+	"title": "Raman",
+	"description": "Description",
+	"location": "Wellman 211",
+	"created_at": "2018-11-09T02:19:16.926Z",
+	"updated_at": "2018-11-09T02:19:16.926Z",
 	"active": true,
-	"time_left": 1798.816752,
-	"food_image": "https://freebites-images.s3.us-west-1.amazonaws.com/post/16/food_image.png",
+	"time_left": 1799.389542,
+	"food_image": "https://freebites-images.s3.us-west-1.amazonaws.com/development/post/18/food_image.jpeg",
+	"slip_image": "https://freebites-images.s3.us-west-1.amazonaws.com/development/post/18/slip_image.jpeg",
+	"slip_present": true,
 	"organization": {
 		"id": 16,
 		"email": "test2@ucdavis.edu",

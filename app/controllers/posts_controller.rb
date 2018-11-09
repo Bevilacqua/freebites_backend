@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 
   def create
     if current_user.organization?
-      post_params = params.permit(:title, :location, :description, :food_image)
+      post_params = params.permit(:title, :location, :description, :food_image, :slip_image)
       puts post_params
       post_params[:user_id] = current_user.id
 
