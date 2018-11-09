@@ -31,7 +31,7 @@ All endpoints with the exception of:
 
 require a JWT token to be passed in the Authorization header of the request.
 
-The format should be: `Authorization: Bearer JWT_TOKEN_STRING`. You can retrieve a JWT token string by calling `POST /signin`.
+The format should be: `Authorization: Bearer JWT_TOKEN_STRING`. You can retrieve a JWT token string by calling `POST /signin` or `POST /signup`.
 
 If the JWT token is not present or expired (expiration of 365 days) you will receive a 401 error in the following format:
 
@@ -86,6 +86,7 @@ Signs up the user.
 	}
 }
 ```
+**NOTE:** The JWT token string can be found in the Authorization header of the response.
 
 **Unsuccessful response (_400_):**
 
