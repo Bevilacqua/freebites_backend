@@ -7,6 +7,7 @@ The backend for the Freebites iOS app.
 1.  `$ bundle`
 2.  `$ rake db:migrate`
 3.  Add the file `.env` to the root of this project and add an entry for `DEVISE_JWT_SECRET_KEY`
+4. 	Obtain AWS credentials and add them to `.env`: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_KEY`, `AWS_REGION`, `S3_BUCKET_NAME`
 4.  `rails s`
 
 # Deployment
@@ -191,6 +192,7 @@ _Empty body_
 			"created_at": "2018-11-08T21:28:55.660Z",
 			"active": true,
 			"time_left": 1782.267411
+			"food_image": "https://s3-us-west-1.amazonaws.com/freebites-images/default.png"
 		},
 		{
 			"id": 14,
@@ -199,6 +201,7 @@ _Empty body_
 			"created_at": "2018-11-08T21:29:10.649Z",
 			"active": true,
 			"time_left": 1797.256313
+			"food_image": "https://s3-us-west-1.amazonaws.com/freebites-images/default.png"
 		}
 	],
 	"expired": [
@@ -208,6 +211,7 @@ _Empty body_
 			"location": "Wellman 211",
 			"created_at": "2018-11-08T04:00:41.668Z",
 			"active": false
+			"food_image": "https://s3-us-west-1.amazonaws.com/freebites-images/default.png"
 		}
 	]
 }
@@ -229,17 +233,19 @@ _Empty body_
 
 ```
 {
-	"id": 12,
-	"title": "Raman new",
-	"description": "Description",
-	"location": "Wellman 211",
-	"created_at": "2018-11-08T08:18:18.334Z",
-	"updated_at": "2018-11-08T08:18:18.334Z",
-	"active": true,
-	"time_left": 1793.579178,
-	"user": {
+	"id": 13,
+	"title": "Burgers",
+	"description": "Oooh they good",
+	"location": "Heart 120",
+	"created_at": "2018-11-08T21:28:55.660Z",
+	"updated_at": "2018-11-08T21:28:55.660Z",
+	"active": false,
+	"time_left": -13182.313061,
+	"food_image": "https://s3-us-west-1.amazonaws.com/freebites-images/default.png",
+	"organization": {
 		"id": 16,
-		"email": "test2@ucdavis.edu"
+		"email": "test2@ucdavis.edu",
+		"name": null
 	}
 }
 ```
@@ -262,9 +268,10 @@ Create a new post
 
 ```
 {
-	"title": "Burgers",
-	"description": "Look at all these burgers!",
-	"location": "Wellman 211"
+	"title": "Sushi",
+	"description": "Litt",
+	"location": "Kemper 330",
+	"food_image": "data:image/png;base64,iVBO..." 	# food_image param is expected to be in base64
 }
 ```
 
@@ -274,15 +281,19 @@ Create a new post
 
 ```
 {
-	"id": 8,
-	"title": "Raman",
-	"description": "Description",
-	"location": "Wellman 211",
-	"created_at": "2018-11-08T04:03:24.489Z",
-	"updated_at": "2018-11-08T04:03:24.489Z",
-	"user": {
+	"id": 16,
+	"title": "Sushi",
+	"description": "Litt",
+	"location": "Kemper 330",
+	"created_at": "2018-11-09T01:49:21.033Z",
+	"updated_at": "2018-11-09T01:49:21.033Z",
+	"active": true,
+	"time_left": 1798.816752,
+	"food_image": "https://freebites-images.s3.us-west-1.amazonaws.com/post/16/food_image.png",
+	"organization": {
 		"id": 16,
-		"email": "test2@ucdavis.edu"
+		"email": "test2@ucdavis.edu",
+		"name": null
 	}
 }
 ```

@@ -3,6 +3,8 @@ class Post < ActiveRecord::Base
   validates :title, presence: true
   validates :location, presence: true
 
+  mount_base64_uploader :food_image, FoodImageUploader
+
   scope :active,  ->   { where("created_at > ?", Time.now - 30.minutes) }
   scope :expired, ->   { where("created_at < ?", Time.now - 30.minutes) }
 
